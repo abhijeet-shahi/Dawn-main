@@ -14,11 +14,10 @@
    Product Key Info Section - Redesigned
    
    UX Principles:
-   - Constrained width (max 54rem) prevents excessive stretch
-   - Clear vertical rhythm with consistent spacing scale
-   - Typography hierarchy: title > price > options > CTA
-   - Reduced visual weight on form controls
-   - Mobile-first responsive design
+   - Constrained width (max 120rem) for full product page feel
+   - 2-column Grid: Media (Left) | Content (Right) at desktop
+   - Mobile-first responsive design (stacks on small screens)
+   - Clear vertical rhythm and hierarchy
    ============================================ */
 
 .product-key-info {
@@ -27,9 +26,54 @@
 }
 
 .product-key-info__inner {
-  max-width: 54rem;
+  max-width: 120rem;
   margin: 0 auto;
   padding: 2rem 1.5rem;
+}
+
+/* Grid Layout */
+.product-key-info__grid {
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: 1fr;
+}
+
+/* Media Column */
+.product-key-info__media {
+  width: 100%;
+}
+
+.product-key-info__media-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  /* Square aspect ratio by default */
+  overflow: hidden;
+  border-radius: 0.8rem;
+  background-color: rgba(var(--color-foreground), 0.04);
+}
+
+.product-key-info__media-placeholder {
+  width: 100%;
+  border-radius: 0.8rem;
+  overflow: hidden;
+}
+
+.product-key-info__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* Keep image fully visible */
+  transition: transform 0.3s ease;
+}
+
+/* Content Column */
+.product-key-info__content {
+  display: flex;
+  flex-direction: column;
 }
 
 /* Primary Hierarchy: Product Title */
@@ -89,7 +133,7 @@
   letter-spacing: 0.02em;
 }
 
-/* Select Wrapper - Reduced visual weight */
+/* Select Wrapper */
 .product-key-info__select-wrapper {
   position: relative;
   width: 100%;
@@ -132,7 +176,8 @@
 
 /* Supporting Hierarchy: Size Guide CTA */
 .product-key-info__size-guide {
-  margin-top: 2.4rem;
+  margin-top: 1.2rem;
+  margin-bottom: 3rem;
 }
 
 .product-key-info__size-guide-btn {
@@ -172,10 +217,144 @@
   opacity: 0.8;
 }
 
+/* Actions Group (Quantity + Buttons) */
+.product-key-info__actions-group {
+  margin-top: auto;
+  /* Push to bottom if needed */
+  border-top: 1px solid rgba(var(--color-foreground), 0.08);
+  padding-top: 2rem;
+}
+
+/* Quantity Selector */
+.product-key-info__quantity {
+  margin-bottom: 2rem;
+}
+
+.product-key-info__quantity-label {
+  display: block;
+  margin-bottom: 0.8rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: rgb(var(--color-foreground));
+}
+
+.product-key-info__quantity-wrapper {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(var(--color-foreground), 0.2);
+  border-radius: 0.4rem;
+  width: 14rem;
+  height: 4.5rem;
+}
+
+.quantity__button {
+  width: 4.5rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgb(var(--color-foreground));
+  transition: background-color 0.2s ease;
+}
+
+.quantity__button:hover {
+  background-color: rgba(var(--color-foreground), 0.04);
+}
+
+.quantity__button svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.quantity__input {
+  width: 5rem;
+  height: 100%;
+  text-align: center;
+  border: none;
+  border-left: 1px solid rgba(var(--color-foreground), 0.1);
+  border-right: 1px solid rgba(var(--color-foreground), 0.1);
+  background: transparent;
+  color: rgb(var(--color-foreground));
+  font-size: 1.5rem;
+  font-weight: 500;
+  -moz-appearance: textfield;
+}
+
+.quantity__input::-webkit-outer-spin-button,
+.quantity__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.quantity__input:focus {
+  outline: none;
+  background-color: rgba(var(--color-foreground), 0.02);
+}
+
+/* Buttons */
+.product-key-info__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.product-key-info__add-to-cart {
+  width: 100%;
+  padding: 1.4rem 2rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: rgb(var(--color-button-text));
+  background-color: transparent;
+  border: 1px solid rgb(var(--color-button));
+  color: rgb(var(--color-button));
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.product-key-info__add-to-cart:hover {
+  border-width: 2px;
+  padding: 1.3rem 1.9rem;
+  /* Adjust for border width change */
+}
+
+.button--primary {
+  width: 100%;
+  padding: 1.4rem 2rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: rgb(var(--color-button-text));
+  background-color: rgb(var(--color-button));
+  border: 1px solid rgb(var(--color-button));
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.button--primary:hover {
+  opacity: 0.9;
+}
+
 /* Responsive: Tablet and up */
 @media screen and (min-width: 750px) {
+  .product-key-info__grid {
+    grid-template-columns: 1fr 1fr;
+    /* 2 Columns */
+    gap: 5rem;
+    align-items: start;
+  }
+
   .product-key-info__inner {
-    padding: 3rem 2rem;
+    padding: 4rem 2rem;
+  }
+
+  .product-key-info__content {
+    position: sticky;
+    top: 2rem;
+    /* Sticky right column */
   }
 
   .product-key-info__title {
@@ -206,6 +385,16 @@
 
   .product-key-info__select {
     font-size: 1.6rem;
+  }
+
+  .product-key-info__buttons {
+    flex-direction: row;
+    /* Side by side buttons on larger screens if desired, or keep stacked */
+  }
+
+  .product-key-info__add-to-cart,
+  .button--primary {
+    flex: 1;
   }
 }
 
