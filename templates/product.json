@@ -66,6 +66,7 @@
         "description",
         "share"
       ],
+      "disabled": true,
       "settings": {
         "enable_sticky_info": true,
         "color_scheme": "scheme-1",
@@ -80,6 +81,16 @@
         "enable_video_looping": false,
         "padding_top": 36,
         "padding_bottom": 12
+      }
+    },
+    "product_key_info_size_guide_9EAGg3": {
+      "type": "product-key-info-size-guide",
+      "name": "Product Info Size Guide",
+      "settings": {
+        "button_label": "Size Guide",
+        "metaobject_type": "size_guide",
+        "empty_state_message": "No size guide available at this time.",
+        "storefront_api_token": "870c43e2c709bef6b0e991f359c5560e"
       }
     },
     "related-products": {
@@ -103,6 +114,7 @@
   },
   "order": [
     "main",
+    "product_key_info_size_guide_9EAGg3",
     "related-products"
   ]
 }
